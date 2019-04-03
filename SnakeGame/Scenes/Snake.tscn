@@ -1,0 +1,51 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scripts/Snake.gd" type="Script" id=1]
+[ext_resource path="res://Assets/head.png" type="Texture" id=2]
+[ext_resource path="res://bullet.wav" type="AudioStream" id=3]
+
+[sub_resource type="CircleShape2D" id=1]
+
+custom_solver_bias = 0.0
+radius = 25.0
+
+[node name="Snake" type="Node2D" index="0"]
+
+script = ExtResource( 1 )
+
+[node name="Head" type="Area2D" parent="." index="0"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Transform" ]
+
+[node name="Sprite" type="Sprite" parent="Head" index="0"]
+
+scale = Vector2( 0.05, 0.05 )
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Head/Sprite" index="0"]
+
+stream = ExtResource( 3 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Head" index="1"]
+
+position = Vector2( 3.25832, 0.579086 )
+scale = Vector2( 0.710088, 0.675727 )
+shape = SubResource( 1 )
+_sections_unfolded = [ "Transform" ]
+
+
